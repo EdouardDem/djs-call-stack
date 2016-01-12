@@ -15,8 +15,8 @@ djs.CallStack = function() {
 	this.stack = {};
 	this.debug = false;
 	//Callbacks
-	this.willExecute = function(namespace) {};
-	this.didExecute = function(namespace) {};
+	this.willExecute = function(name) {};
+	this.didExecute = function(name) {};
 }
 
 //------------------------------------------------------------------------------
@@ -25,25 +25,25 @@ djs.CallStack = function() {
 /**
  * Add a callback to the call stack
  *
- * @param {String} namespace
+ * @param {String} name
  * @param {Function} callback
  * @return {Object}
  */
-djs.CallStack.prototype.add = function(namespace, callback) {
+djs.CallStack.prototype.add = function(name, callback) {
 	//Add the callback
-	this.stack[namespace] = callback;
+	this.stack[name] = callback;
 	//End
 	return this;
 };
 /**
  * Remove a callback from the call stack
  *
- * @param {String} namespace
+ * @param {String} name
  * @return {Object}
  */
-djs.CallStack.prototype.delete = function(namespace) {
+djs.CallStack.prototype.delete = function(name) {
 	//Remove the callback
-	delete this.stack[namespace];
+	delete this.stack[name];
 	//End
 	return this;
 };
@@ -107,24 +107,24 @@ djs.CallStack.prototype.run = function() {
  * @private
  * @callback willExecute
  * @callback didExecute
- * @param {String} namespace
+ * @param {String} name
  * @return {Object}
  */
-djs.CallStack.prototype._execute = function(namespace) {
+djs.CallStack.prototype._execute = function(name) {
 	//Check if the function exsits
-	if (typeof this.stack[namespace] == "function") {
+	if (typeof this.stack[name] == "function") {
 		//Debug logging
 		if (this.debug)
-			console.log('[djs.CallStack] Will execute ' + namespace);
+			console.log('[djs.CallStack] Will execute ' + name);
 		//Pre callback
-		this.willExecute(namespace);
+		this.willExecute(name);
 		//Execute function
-		this.stack[namespace]();
+		this.stack[name]();
 		//After callback
-		this.didExecute(namespace);
+		this.didExecute(name);
 		//Debug logging
 		if (this.debug)
-			console.log('[djs.CallStack] Did execute ' + namespace);
+			console.log('[djs.CallStack] Did execute ' + name);
 	}
 	//End
 	return this;
