@@ -1,8 +1,14 @@
 /**
+ * Object djs for namespace
+ */
+if (typeof djs != "undefined") {
+	window.djs = {};
+}
+/**
  * This class manage an ordered callback stack
  * This class is chainable
  */
-function CallStack() {
+djs.CallStack = function() {
 	//Vars
 	this.reversed = false;
 	this.order = null; //Array, includes ordered callback's names
@@ -23,7 +29,7 @@ function CallStack() {
  * @param {Function} callback
  * @return {Object}
  */
-CallStack.prototype.add = function(namespace, callback) {
+djs.CallStack.prototype.add = function(namespace, callback) {
 	//Add the callback
 	this.stack[namespace] = callback;
 	//End
@@ -35,7 +41,7 @@ CallStack.prototype.add = function(namespace, callback) {
  * @param {String} namespace
  * @return {Object}
  */
-CallStack.prototype.delete = function(namespace) {
+djs.CallStack.prototype.delete = function(namespace) {
 	//Remove the callback
 	delete this.stack[namespace];
 	//End
@@ -46,7 +52,7 @@ CallStack.prototype.delete = function(namespace) {
  *
  * @return {Object}
  */
-CallStack.prototype.reverse = function() {
+djs.CallStack.prototype.reverse = function() {
 	//Reverse
 	this.reversed = true;
 	//End
@@ -57,7 +63,7 @@ CallStack.prototype.reverse = function() {
  *
  * @return {Object}
  */
-CallStack.prototype.restore = function() {
+djs.CallStack.prototype.restore = function() {
 	//Restore
 	this.reversed = false;
 	//End
@@ -68,7 +74,7 @@ CallStack.prototype.restore = function() {
  *
  * @return {Object}
  */
-CallStack.prototype.run = function() {
+djs.CallStack.prototype.run = function() {
 	//If no order is defined
 	if (this.order == null) {
 		//Execute each function stored in the stack
@@ -104,12 +110,12 @@ CallStack.prototype.run = function() {
  * @param {String} namespace
  * @return {Object}
  */
-CallStack.prototype._execute = function(namespace) {
+djs.CallStack.prototype._execute = function(namespace) {
 	//Check if the function exsits
 	if (typeof this.stack[namespace] == "function") {
 		//Debug logging
 		if (this.debug)
-			console.log('[CallStack] Will execute ' + namespace);
+			console.log('[djs.CallStack] Will execute ' + namespace);
 		//Pre callback
 		this.willExecute(namespace);
 		//Execute function
@@ -118,7 +124,7 @@ CallStack.prototype._execute = function(namespace) {
 		this.didExecute(namespace);
 		//Debug logging
 		if (this.debug)
-			console.log('[CallStack] Did execute ' + namespace);
+			console.log('[djs.CallStack] Did execute ' + namespace);
 	}
 	//End
 	return this;
