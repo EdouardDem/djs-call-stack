@@ -1,11 +1,11 @@
 /**
- * Cette classe permet de gérer une pile d'appel ordonné
- * Cette classe est chainable
+ * This class manage an ordered callback stack
+ * This class is chainable
  */
 function CallStack() {
-    //Variables
+    //Vars
     this.reversed = false;
-    this.order = null; //Array, contient les namespace dans l'ordre
+    this.order = null; //Array, includes ordered callback's names
     this.stack = {};
     this.debug = false;
     //Callbacks
@@ -17,50 +17,50 @@ function CallStack() {
 //	MEHTODS
 //------------------------------------------------------------------------------
 /**
- * Ajoute un callback à la liste d'appel
+ * Add a callback to the call stack
  *
  * @param {String} namespace
  * @param {Function} callback
  * @return {Object}
  */
 CallStack.prototype.add = function(namespace, callback) {
-    //Ajoute le callback
+    //Add the callback
     this.stack[namespace] = callback;
-    //Fin
+    //End
     return this;
 }
 /**
- * Supprime un callback de la liste d'appel
+ * Remove a callback from the call stack
  *
  * @param {String} namespace
  * @return {Object}
  */
 CallStack.prototype.delete = function(namespace) {
-    //Supprime le callback
+    //Remove the callback
     delete this.stack[namespace];
-    //Fin
+    //End
     return this;
 }
 /**
- * Inverse l'ordre d'appel
+ * Reverse call stack execution
  *
  * @return {Object}
  */
 CallStack.prototype.reverse = function() {
     //Reverse
     this.reversed = true;
-    //Fin
+    //End
     return this;
 };
 /**
- * Rétabli l'ordre d'appel
+ * Restore call stack execution order
  *
  * @return {Object}
  */
 CallStack.prototype.restore = function() {
-    //Reverse
+    //Restore
     this.reversed = false;
-    //Fin
+    //End
     return this;
 };
 /**
@@ -69,9 +69,9 @@ CallStack.prototype.restore = function() {
  * @return {Object}
  */
 CallStack.prototype.run = function() {
-    //If an order is defined
+    //If no order is defined
     if (this.order == null) {
-        //Execute each function stroed in the stack
+        //Execute each function stored in the stack
         $.each(this.stack, function(i,e){
             this._execute(i);
         }.bind(this));
