@@ -11,7 +11,7 @@ function CallStack() {
     //Callbacks
     this.willExecute = function(namespace) {};
     this.didExecute = function(namespace) {};
-};
+}
 
 //------------------------------------------------------------------------------
 //	MEHTODS
@@ -28,7 +28,7 @@ CallStack.prototype.add = function(namespace, callback) {
     this.stack[namespace] = callback;
     //End
     return this;
-}
+};
 /**
  * Remove a callback from the call stack
  *
@@ -40,7 +40,7 @@ CallStack.prototype.delete = function(namespace) {
     delete this.stack[namespace];
     //End
     return this;
-}
+};
 /**
  * Reverse call stack execution
  *
