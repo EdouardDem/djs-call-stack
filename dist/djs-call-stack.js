@@ -1,7 +1,8 @@
-/**!
+/**
  * @author Edouard Demotes-Mainard <https://github.com/EdouardDem>
  * @license http://opensource.org/licenses/BSD-2-Clause BSD 2-Clause License
  */
+
 /**
  * Object djs for namespace
  */
