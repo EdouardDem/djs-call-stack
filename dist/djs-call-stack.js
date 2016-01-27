@@ -6,9 +6,8 @@
 /**
  * Object djs for namespace
  */
-if (typeof djs == "undefined") {
-	window.djs = {};
-}
+window.djs = window.djs || {};
+
 /**
  * This class manage an ordered callback stack
  * This class is chainable
