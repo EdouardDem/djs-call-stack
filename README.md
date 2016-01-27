@@ -6,6 +6,14 @@ When you call the stack, the callbacks will be called in compliance with the ord
 It doesn't matters when you push the callbacks, as long as you define the order before calling the stack.
 This class is "chainable".
 
+## Installation
+
+Installation with bower :
+
+```
+bower install djs-call-stack
+```
+
 ## Usage
 
 ### Adding callbacks
