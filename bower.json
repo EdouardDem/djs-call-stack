@@ -1,0 +1,28 @@
+{
+  "name": "djs-call-stack",
+  "description": "JavaScript library to manage callback sets",
+  "main": [
+    "dist/djs-call-stack.js",
+    "dist/djs-call-stack.min.js"
+  ],
+  "authors": [
+    "Edouard Demotes-Mainard"
+  ],
+  "license": "https://opensource.org/licenses/BSD-2-Clause",
+  "keywords": [
+    "stack",
+    "callback",
+    "ordering"
+  ],
+  "homepage": "https://github.com/EdouardDem/djs-call-stack",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
