@@ -6,7 +6,7 @@
 /**
  * Object djs for namespace
  */
-if (typeof djs != "undefined") {
+if (typeof djs == "undefined") {
 	window.djs = {};
 }
 /**
