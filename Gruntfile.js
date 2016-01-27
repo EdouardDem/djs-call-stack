@@ -8,8 +8,16 @@ module.exports = function(grunt) {
 				banner: '/*! <%= pkg.homepage %> - Generated <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: 'dist/<%= pkg.name %>.js',
+				src: 'src/<%= pkg.name %>.js',
 				dest: 'dist/<%= pkg.name %>.min.js'
+			}
+		},
+		copy: {
+			main: {
+				files: [
+					// includes files within path
+					{expand: true, flatten: true, src: ['src/*'], dest: 'dist/', filter: 'isFile'},
+				],
 			}
 		}
 	});
@@ -17,7 +25,10 @@ module.exports = function(grunt) {
 	// Load the plugin that provides the "uglify" task.
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
+	// Load the plugin that provides the "copy" task.
+	grunt.loadNpmTasks('grunt-contrib-copy');
+
 	// Default task(s).
-	grunt.registerTask('default', ['uglify']);
+	grunt.registerTask('default', ['uglify', 'copy']);
 
 };
