@@ -1,7 +1,7 @@
 # djs-call-stack
 
-JavaScript library to manage ordered callback sets.
-You push callbacks to the object and define an order.
+This is a JavaScript library to manage ordered callback sets.
+The usage is simple, you push callbacks, define an order, and call the stack when you need.
 When you call the stack, the callbacks will be called in compliance with the order.
 It doesn't matters when you push the callbacks, as long as you define the order before calling the stack.
 This class is "chainable".

@@ -6,23 +6,24 @@
 /**
  * Object djs for namespace
  */
-if (typeof djs == "undefined") {
-	window.djs = {};
-}
+window.djs = window.djs || {};
+
 /**
  * This class manage an ordered callback stack
  * This class is chainable
  */
-djs.CallStack = function() {
+djs.CallStack = function () {
 	//Vars
 	this.reversed = false;
 	this.order = null; //Array, includes ordered callback's names
 	this.stack = {};
 	this.debug = false;
 	//Callbacks
-	this.willExecute = function(name) {};
-	this.didExecute = function(name) {};
-}
+	this.willExecute = function (name) {
+	};
+	this.didExecute = function (name) {
+	};
+};
 
 //------------------------------------------------------------------------------
 //	MEHTODS
@@ -34,7 +35,7 @@ djs.CallStack = function() {
  * @param {Function} callback
  * @return {Object}
  */
-djs.CallStack.prototype.add = function(name, callback) {
+djs.CallStack.prototype.add = function (name, callback) {
 	//Add the callback
 	this.stack[name] = callback;
 	//End
@@ -46,7 +47,7 @@ djs.CallStack.prototype.add = function(name, callback) {
  * @param {String} name
  * @return {Object}
  */
-djs.CallStack.prototype.delete = function(name) {
+djs.CallStack.prototype.delete = function (name) {
 	//Remove the callback
 	delete this.stack[name];
 	//End
@@ -57,7 +58,7 @@ djs.CallStack.prototype.delete = function(name) {
  *
  * @return {Object}
  */
-djs.CallStack.prototype.reverse = function() {
+djs.CallStack.prototype.reverse = function () {
 	//Reverse
 	this.reversed = true;
 	//End
@@ -68,7 +69,7 @@ djs.CallStack.prototype.reverse = function() {
  *
  * @return {Object}
  */
-djs.CallStack.prototype.restore = function() {
+djs.CallStack.prototype.restore = function () {
 	//Restore
 	this.reversed = false;
 	//End
@@ -79,11 +80,11 @@ djs.CallStack.prototype.restore = function() {
  *
  * @return {Object}
  */
-djs.CallStack.prototype.run = function() {
+djs.CallStack.prototype.run = function () {
 	//If no order is defined
 	if (this.order == null) {
 		//Execute each function stored in the stack
-		$.each(this.stack, function(i,e){
+		$.each(this.stack, function (i, e) {
 			this._execute(i);
 		}.bind(this));
 	}
@@ -91,13 +92,13 @@ djs.CallStack.prototype.run = function() {
 	else {
 		//If we should execute the stack from the end
 		if (this.reversed) {
-			for(var i=this.order.length - 1; i >= 0; i--) {
+			for (var i = this.order.length - 1; i >= 0; i--) {
 				this._execute(this.order[i]);
 			}
 		}
 		//We execute the stack using the order
 		else {
-			for(var i=0; i < this.order.length; i++) {
+			for (var i = 0; i < this.order.length; i++) {
 				this._execute(this.order[i]);
 			}
 		}
@@ -115,7 +116,7 @@ djs.CallStack.prototype.run = function() {
  * @param {String} name
  * @return {Object}
  */
-djs.CallStack.prototype._execute = function(name) {
+djs.CallStack.prototype._execute = function (name) {
 	//Check if the function exsits
 	if (typeof this.stack[name] == "function") {
 		//Debug logging
