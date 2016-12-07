@@ -84,9 +84,11 @@ djs.CallStack.prototype.run = function () {
 	//If no order is defined
 	if (this.order == null) {
 		//Execute each function stored in the stack
-		$.each(this.stack, function (i, e) {
-			this._execute(i);
-		}.bind(this));
+		for(var key in this.stack) {
+			if (this.stack.hasOwnProperty(key)) {
+				this._execute(key);
+			}
+		}
 	}
 	//If an order is defined
 	else {
