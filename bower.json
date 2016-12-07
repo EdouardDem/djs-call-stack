@@ -18,14 +18,15 @@
   "moduleType": [
     "globals"
   ],
-  "dependencies": {
-    "jquery": "^2.0.0"
-  },
+  "dependencies": {},
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "jquery": "^3.1.1"
+  }
 }

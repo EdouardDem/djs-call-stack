@@ -1,7 +1,7 @@
 /**
  * Log function
  *
- * @param function
+ * @param {String} text
  */
 displayLog = function(text) {
     $('.results').append('<div>'+text+'</div>');
@@ -32,7 +32,7 @@ runTests = function() {
     cs.restore().delete('cs-3').run();
 };
 /**
- * Auto ruun test
+ * Auto run test
  */
 $(document).ready(function () {
     runTests();
